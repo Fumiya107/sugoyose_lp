@@ -282,8 +282,54 @@ const App: React.FC = () => {
         </div>
       </Section>
 
-      {/* 8. Trust */}
+      {/* 7.5. Book & Pricing Section */}
       <Section variant="off">
+        <div className="text-center mb-12">
+          <h2 className="text-h2-sp md:text-h2 text-text-main">製本料金</h2>
+          <p className="mt-4 text-text-sec text-body">
+            高品質な製本で、大切な想いを形に残します。
+          </p>
+        </div>
+
+        <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-center">
+          {/* Book Images */}
+          <div className="w-full md:w-1/2 grid grid-cols-2 gap-4 md:gap-6">
+            {/* Cover Image */}
+            <div className="overflow-hidden shadow-md transition-transform duration-300 hover:scale-105" style={{ borderRadius: '15px' }}>
+              <img
+                src="/images/book-cover.png"
+                alt="メッセージブックの表紙"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            {/* Pages Image */}
+            <div className="overflow-hidden shadow-md transition-transform duration-300 hover:scale-105" style={{ borderRadius: '15px' }}>
+              <img
+                src="/images/book-pages.png"
+                alt="メッセージブックのページ"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+
+          {/* Pricing Information */}
+          <div className="w-full md:w-1/2">
+            <div className="bg-bg-surface p-8 border border-border" style={{ borderRadius: '10px' }}>
+              <h3 className="text-h3-sp md:text-h3 font-bold mb-6 text-text-main">料金について</h3>
+
+
+              <div className="bg-bg-off p-8" style={{ borderRadius: '10px' }}>
+                <p className="text-body text-text-sec mb-4">10ページ分の料金（約50名メッセージ掲載可能）</p>
+                <p className="text-h2-sp md:text-h2 font-bold text-primary mb-3">約3,980円</p>
+                <p className="text-sm text-text-subtle">※ページ数によって単価は変動します。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      {/* 8. Trust */}
+      <Section variant="light">
         <div className="flex flex-col lg:flex-row gap-8 md:gap-12">
           <div className="lg:w-1/2">
             <h2 className="text-h2-sp md:text-h2 mb-6">法人での活用事例</h2>
@@ -322,7 +368,7 @@ const App: React.FC = () => {
       </Section>
 
       {/* 9. CTA */}
-      <Section id="contact" variant="light">
+      <Section id="contact" variant="off">
         <div className="max-w-[800px] mx-auto text-center bg-bg-off border border-border p-8 md:p-12 rounded-md">
           <h2 className="text-h2-sp md:text-h2 mb-4 text-text-main">
             その「節目」を、<br className="hidden md:inline" />

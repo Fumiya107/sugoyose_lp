@@ -4,7 +4,7 @@ export interface SectionProps {
   id?: string;
   className?: string;
   children: ReactNode;
-  variant?: 'light' | 'off'; // Background strictly light or off-white
+  variant?: 'light' | 'off' | 'white'; // Background strictly light, off-white, or white
 }
 
 export interface ButtonProps {

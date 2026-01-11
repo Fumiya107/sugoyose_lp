@@ -1,17 +1,17 @@
 import React from 'react';
 import { SectionProps } from '../types';
 
-export const Section: React.FC<SectionProps> = ({ 
-  id, 
-  className = '', 
-  children, 
-  variant = 'light' 
+export const Section: React.FC<SectionProps> = ({
+  id,
+  className = '',
+  children,
+  variant = 'light'
 }) => {
-  const bgClass = variant === 'off' ? 'bg-bg-off' : 'bg-bg-light';
+  const bgClass = variant === 'off' ? 'bg-bg-off' : variant === 'white' ? 'bg-bg-surface' : 'bg-bg-light';
 
   return (
-    <section 
-      id={id} 
+    <section
+      id={id}
       className={`w-full section-padding ${bgClass} ${className}`}
     >
       <div className="layout-container">
