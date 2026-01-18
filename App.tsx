@@ -25,7 +25,34 @@ const Card: React.FC<{ children: React.ReactNode; className?: string }> = ({ chi
   </div>
 );
 
+const ImageModal: React.FC<{ src: string | null; onClose: () => void }> = ({ src, onClose }) => {
+  if (!src) return null;
+
+  return (
+    <div
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-4 animate-in fade-in duration-200"
+      onClick={onClose}
+    >
+      <div className="relative max-w-5xl max-h-[90vh] w-auto h-auto" onClick={(e) => e.stopPropagation()}>
+        <button
+          onClick={onClose}
+          className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors"
+        >
+          <X size={32} />
+        </button>
+        <img
+          src={src}
+          alt="Enlarged view"
+          className="max-w-full max-h-[85vh] object-contain rounded-sm shadow-2xl"
+        />
+      </div>
+    </div>
+  );
+};
+
 const App: React.FC = () => {
+  const [selectedImage, setSelectedImage] = React.useState<string | null>(null);
+
   const scrollToContact = () => {
     const element = document.getElementById('contact');
     element?.scrollIntoView({ behavior: 'smooth' });
@@ -198,8 +225,73 @@ const App: React.FC = () => {
         </div>
       </Section>
 
-      {/* 6. Service Intro */}
+      {/* 5.5. Pricing Case Study */}
       <Section variant="off">
+        <div className="text-center mb-12">
+          <h2 className="text-h2-sp md:text-h2 text-text-main">
+            料金説明
+          </h2>
+        </div>
+        <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-center">
+          {/* Text Content */}
+          <div className="w-full md:w-1/2">
+            <div className="bg-bg-surface p-6 md:p-8 border border-border" style={{ borderRadius: '10px' }}>
+              <h3 className="text-h3-sp md:text-h3 font-bold mb-4 text-text-main border-b border-border pb-4">
+                「勤続祝い」での活用事例
+              </h3>
+
+              <div className="mb-6">
+                <p className="text-body text-text-main font-bold mb-2">対象従業員が10名の場合</p>
+                <div className="flex items-end gap-2 text-primary font-bold">
+                  <span className="text-h1-sp md:text-h2 leading-none">39,800</span>
+                  <span className="text-body">円（税込）</span>
+                </div>
+              </div>
+
+              <div className="bg-bg-off p-5 mb-4" style={{ borderRadius: '8px' }}>
+                <div className="flex items-start gap-2">
+                  <span className="font-bold text-text-main flex-shrink-0">内訳：</span>
+                  <p className="text-body text-text-sec">
+                    1冊3,980円（50名分のメッセージ）が10冊
+                  </p>
+                </div>
+                <p className="text-xs text-text-subtle">
+                  ※オリジナルデザインが必要な場合は、別途費用が発生します。
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Images */}
+          <div className="w-full md:w-1/2">
+            <div className="grid grid-cols-2 gap-4 md:gap-6 items-start">
+              <div className="flex flex-col gap-2 cursor-pointer group" onClick={() => setSelectedImage("/images/pricing_book_inside.jpg")}>
+                <div className="shadow-md transition-transform duration-300 group-hover:scale-[1.02]" style={{ borderRadius: '10px', overflow: 'hidden' }}>
+                  <img
+                    src="/images/pricing_book_inside.jpg"
+                    alt="製本カバーイメージ"
+                    className="w-full h-auto"
+                  />
+                </div>
+                <p className="text-center text-xs text-text-subtle">表紙イメージ</p>
+              </div>
+              <div className="flex flex-col gap-2 cursor-pointer group" onClick={() => setSelectedImage("/images/pricing_book_cover.jpg")}>
+                <div className="shadow-md transition-transform duration-300 group-hover:scale-[1.02]" style={{ borderRadius: '10px', overflow: 'hidden' }}>
+                  <img
+                    src="/images/pricing_book_cover.jpg"
+                    alt="製本中面イメージ"
+                    className="w-full h-auto"
+                  />
+                </div>
+                <p className="text-center text-xs text-text-subtle">中面イメージ</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      {/* 6. Service Intro */}
+      <Section variant="light">
         <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
           <div className="w-full md:w-1/2 text-center md:text-left">
             <h2 className="text-h2-sp md:text-h2 mb-6">
@@ -223,7 +315,7 @@ const App: React.FC = () => {
       </Section>
 
       {/* 7. Features */}
-      <Section variant="light">
+      <Section variant="off">
         <div className="text-center mb-12">
           <h2 className="text-h2-sp md:text-h2 text-text-main">スゴヨセが選ばれる3つの理由</h2>
           <p className="mt-4 text-text-sec text-body">
@@ -237,17 +329,19 @@ const App: React.FC = () => {
             {
               point: "01",
               title: "豪華なブック形式で\n想いがしっかり伝わる！",
+              desc: "高級感のあるハードカバーや、手触りの良い紙質。飾れるデザインで、一生の記念品になります。",
               image: "https://sugoyose.jp/_assets/images/page_001/hero_image1.jpg"
             },
             {
               point: "02",
               title: "ハイクオリティなデザインを誰でも手軽に",
+              desc: "豊富なデザインテンプレートから選ぶだけ。デザイナーがいなくても、プロ並みの仕上がりに。",
               image: "https://sugoyose.jp/_assets/images/page_001/hero_image2.jpg"
             },
             {
               point: "03",
               title: "自由度の高い\nアルバム写真機能",
-
+              desc: "思い出の写真もたっぷり掲載可能。レイアウトも自由自在で、オリジナリティ溢れる一冊に。",
               image: "https://sugoyose.jp/_assets/images/page_001/hero_image4.jpg"
             }
           ].map((feature, i) => (
@@ -279,52 +373,6 @@ const App: React.FC = () => {
               </div>
             </div>
           ))}
-        </div>
-      </Section>
-
-      {/* 7.5. Book & Pricing Section */}
-      <Section variant="off">
-        <div className="text-center mb-12">
-          <h2 className="text-h2-sp md:text-h2 text-text-main">製本料金</h2>
-          <p className="mt-4 text-text-sec text-body">
-            高品質な製本で、大切な想いを形に残します。
-          </p>
-        </div>
-
-        <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-center">
-          {/* Book Images */}
-          <div className="w-full md:w-1/2 grid grid-cols-2 gap-4 md:gap-6">
-            {/* Cover Image */}
-            <div className="overflow-hidden shadow-md transition-transform duration-300 hover:scale-105" style={{ borderRadius: '15px' }}>
-              <img
-                src="/images/book-cover.png"
-                alt="メッセージブックの表紙"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            {/* Pages Image */}
-            <div className="overflow-hidden shadow-md transition-transform duration-300 hover:scale-105" style={{ borderRadius: '15px' }}>
-              <img
-                src="/images/book-pages.png"
-                alt="メッセージブックのページ"
-                className="w-full h-full object-cover"
-              />
-            </div>
-          </div>
-
-          {/* Pricing Information */}
-          <div className="w-full md:w-1/2">
-            <div className="bg-bg-surface p-8 border border-border" style={{ borderRadius: '10px' }}>
-              <h3 className="text-h3-sp md:text-h3 font-bold mb-6 text-text-main">料金について</h3>
-
-
-              <div className="bg-bg-off p-8" style={{ borderRadius: '10px' }}>
-                <p className="text-body text-text-sec mb-4">10ページ分の料金（約50名メッセージ掲載可能）</p>
-                <p className="text-h2-sp md:text-h2 font-bold text-primary mb-3">約3,980円</p>
-                <p className="text-sm text-text-subtle">※ページ数によって単価は変動します。</p>
-              </div>
-            </div>
-          </div>
         </div>
       </Section>
 
@@ -395,6 +443,7 @@ const App: React.FC = () => {
           <p className="text-text-subtle text-xs">© 2026 iUM inc. All Rights Reserved.</p>
         </div>
       </footer>
+      <ImageModal src={selectedImage} onClose={() => setSelectedImage(null)} />
     </div>
   );
 };
