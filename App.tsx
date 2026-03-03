@@ -64,8 +64,8 @@ const App: React.FC = () => {
       {/* Header - Fixed but simple */}
       <header className="fixed top-0 left-0 w-full z-50 bg-bg-light/95 backdrop-blur border-b border-border h-[64px] flex items-center">
         <div className="layout-container w-full flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Logo className="w-[20px] h-[23px] md:w-[24px] md:h-[28px]" />
+          <div className="flex items-center">
+            <Logo className="h-[23px] md:h-[28px] w-auto" />
             <LogoText />
           </div>
         </div>
@@ -436,9 +436,9 @@ const App: React.FC = () => {
 
       <footer className="bg-bg-light border-t border-border py-8 md:py-12 text-center" style={{ backgroundColor: 'unset' }}>
         <div className="layout-container">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <Logo className="w-6 h-6" />
-            <span className="text-body font-bold">スゴヨセ</span>
+          <div className="flex items-center justify-center mb-4">
+            <Logo className="h-6 w-auto" />
+            <LogoText />
           </div>
           <p className="text-text-subtle text-xs">© 2026 iUM inc. All Rights Reserved.</p>
         </div>
